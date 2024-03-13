@@ -172,8 +172,7 @@ fun ExpandableMovieCard(movie: Movie) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieList(movies: List<Movie> = getMovies()) {
-    val scrollBehavior =
-        TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = { TopAppBar(scrollBehavior = scrollBehavior) },
