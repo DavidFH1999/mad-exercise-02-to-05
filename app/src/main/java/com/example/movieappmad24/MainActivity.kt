@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,6 +47,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import com.example.movieappmad24.models.Movie
@@ -63,7 +66,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MovieList()
+                    MovieAppNavigation()
                 }
             }
         }
@@ -153,12 +156,13 @@ fun MovieDetails(movie: Movie, isExpanded: Boolean) {
 }
 
 @Composable
-fun ExpandableMovieCard(movie: Movie) {
+fun ExpandableMovieCard(movie: Movie, onClick: () -> Unit) {
     var isExpanded by remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Column {
@@ -171,7 +175,7 @@ fun ExpandableMovieCard(movie: Movie) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MovieList(movies: List<Movie> = getMovies()) {
+fun MovieList(navController: NavController, movies: List<Movie> = getMovies()) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -184,14 +188,21 @@ fun MovieList(movies: List<Movie> = getMovies()) {
                 .padding(values)
         ) {
             items(movies) { movie ->
-                ExpandableMovieCard(movie)
+                ExpandableMovieCard(movie, onClick = {
+                    navController.navigate("detailScreen/${movie.id}")
+                })
             }
         }
     }
 }
 
+@Composable
+fun previewNavController(): NavController {
+    return rememberNavController()
+}
+
 @Preview
 @Composable
 fun DefaultPreview() {
-    MovieList()
+    MovieList(navController = previewNavController())
 }
