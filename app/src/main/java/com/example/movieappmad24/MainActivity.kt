@@ -53,6 +53,8 @@ import coil.compose.rememberImagePainter
 import coil.size.Scale
 import com.example.movieappmad24.models.Movie
 import com.example.movieappmad24.models.getMovies
+import com.example.movieappmad24.navigation.MovieAppNavigation
+import com.example.movieappmad24.navigation.Screen
 import com.example.movieappmad24.ui.theme.MovieAppMAD24Theme
 
 
@@ -189,7 +191,7 @@ fun MovieList(navController: NavController, movies: List<Movie> = getMovies()) {
         ) {
             items(movies) { movie ->
                 ExpandableMovieCard(movie, onClick = {
-                    navController.navigate("detailScreen/${movie.id}")
+                    navController.navigate(Screen.DetailScreen.createRoute(movie.id))
                 })
             }
         }
