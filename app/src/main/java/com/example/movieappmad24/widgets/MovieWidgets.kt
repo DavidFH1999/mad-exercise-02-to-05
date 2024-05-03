@@ -25,7 +25,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
@@ -207,7 +207,7 @@ fun MovieDetails(modifier: Modifier, movie: Movie) {
             Text(text = "Actors: ${movie.actors}", style = MaterialTheme.typography.bodySmall)
             Text(text = "Rating: ${movie.rating}", style = MaterialTheme.typography.bodySmall)
 
-            Divider(modifier = Modifier.padding(3.dp))
+            HorizontalDivider(modifier = Modifier.padding(3.dp))
 
             Text(buildAnnotatedString {
                 withStyle(style = SpanStyle(color = Color.DarkGray, fontSize = 13.sp)) {
