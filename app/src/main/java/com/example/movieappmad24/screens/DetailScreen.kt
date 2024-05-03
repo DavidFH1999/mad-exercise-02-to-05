@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Divider
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -49,7 +49,7 @@ fun DetailScreen(
                 SimpleTopAppBar(title = movie.title) {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Go back"
                         )
                     }
@@ -63,14 +63,14 @@ fun DetailScreen(
                     onFavoriteClick = { id -> moviesViewModel.toggleFavoriteMovie(id) }
                     )
 
-                Divider(modifier = Modifier.padding(4.dp))
+                HorizontalDivider(modifier = Modifier.padding(4.dp))
 
                 Column {
                     Text("Movie Trailer")
                     VideoPlayer(trailerURL = movie.trailer)
                 }
 
-                Divider(modifier = Modifier.padding(4.dp))
+                HorizontalDivider(modifier = Modifier.padding(4.dp))
 
                 HorizontalScrollableImageView(movie = movie)
             }
