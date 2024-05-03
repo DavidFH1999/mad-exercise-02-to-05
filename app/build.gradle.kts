@@ -58,7 +58,7 @@ dependencies {
     val nav_version = "2.7.7"
     val lifecycle_version = "2.7.0"
 
-    val media3_version = "1.2.1"
+    val media3_version = "1.3.1"
 
     // For media playback using ExoPlayer
     implementation("androidx.media3:media3-exoplayer:$media3_version")
